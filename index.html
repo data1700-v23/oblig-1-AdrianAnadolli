@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<!--css-->
+    <style>
+        #antall{
+            float: left;
+            width: 30px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+
+        }
+        #antallTabell{
+            float: left;
+        }
+        #film{
+            float: left;
+        }
+        #slettknapp{
+            margin-top: 10px;
+        }
+        #feilmelding2, #feilmelding3, #feilmelding4
+        ,#feilmelding5,#feilmelding6{
+            color: red;
+        }
+        #feilmelding{
+            color: red;
+            position: absolute;
+            left: 187px;
+        }
+        #feilmelding1{
+            color: red;
+            position: absolute;
+            top: 124px;
+            left: 124px;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<h1>Bestillig av kinobilletter:</h1>
+
+
+<!--En table med input fra bruker, etter kunden trykker på kjøp billett vil formen resettes.-->
+
+<form id="innhold">
+<table id="table">
+
+    <td>Velg film:
+    <th><select id="film">
+        <option>Velg film her:</option>
+        <option>Spiderman</option>
+        <option>Batman</option>
+        <option>Ironman</option>
+        <option>Superman</option>
+    </select></th></td><td id = "feilmelding"></td>
+
+    <tr></tr>
+
+    <td>Antall:<th id="antallTabell"><input type="number" id="antall"></th></td><td id = "feilmelding1"></td>
+
+    <tr></tr>
+
+    <td>Fornavn:<th><input type="text" id="fornavn"></th><td id = "feilmelding2"></td></td>
+
+    <tr></tr>
+
+    <td>Etternavn:<th><input type="text" id="etternavn"></th></td><td id = "feilmelding3"></td>
+
+    <tr></tr>
+
+    <td>Telefonnr:<th><input type="number" id="telefonnr"></th></td><td id = "feilmelding4"></td>
+
+    <tr></tr>
+
+    <td>Epost:<th><input type="email" id="epost"></th></td><td id = "feilmelding5"></td>
+
+</table>
+</form>
+
+
+<!--En knapp som registrerer input fra bruker inn i en dynamisk array.-->
+
+<button onclick="register();">Kjøp billett</button>
+
+<br>
+
+<h2>Alle billetter:</h2>
+
+<!--Dynamisk table som viser innholdet i arrayet-->
+<table id="resultat">
+</table>
+<!--Sletter alt innhold i arrayet, reseter tell variablen til 0.-->
+<table>
+<td><button onclick=slettAlt(); id="slettknapp">Slett alle billettene</button></td><td id="feilmelding6"></td>
+</table>
+
+<script type="application/javascript" src="index.js">
+</script>
+</body>
+</html>
