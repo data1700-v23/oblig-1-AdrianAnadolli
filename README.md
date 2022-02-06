@@ -3,7 +3,7 @@
 OsloMet brukernavn: s364553
 GitHub brukernavn: AdrianAnadolli
 
-GitHub repo URL: 
+GitHub repo URL: https://github.com/DATA1700/oblig-1-AdrianAnadolli
 
 URL til Heroku app: 
 
