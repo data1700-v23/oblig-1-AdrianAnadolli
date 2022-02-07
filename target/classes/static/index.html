@@ -3,52 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-<!--css-->
     <style>
-        #antall{
-            float: left;
-            width: 30px;
-            margin-top: 15px;
-            margin-bottom: 15px;
-
+        #resultat{
+           border: 2px solid black;
         }
-        #antallTabell{
-            float: left;
-        }
-        #film{
-            float: left;
-        }
-        #slettknapp{
-            margin-top: 10px;
-        }
-        #feilmelding2, #feilmelding3, #feilmelding4
-        ,#feilmelding5,#feilmelding6{
-            color: red;
-        }
-        #feilmelding{
-            color: red;
-            position: absolute;
-            left: 187px;
-        }
-        #feilmelding1{
-            color: red;
-            position: absolute;
-            top: 124px;
-            left: 124px;
-        }
-
 
     </style>
 </head>
 <body>
-
 <h1>Bestillig av kinobilletter:</h1>
-
-
-<!--En table med input fra bruker, etter kunden trykker på kjøp billett vil formen resettes.-->
-
 <form id="innhold">
-<table id="table">
+<table>
 
     <td>Velg film:
     <th><select id="film">
@@ -56,50 +21,90 @@
         <option>Spiderman</option>
         <option>Batman</option>
         <option>Ironman</option>
-        <option>Superman</option>
-    </select></th></td><td id = "feilmelding"></td>
+    </select></th></td>
 
     <tr></tr>
 
-    <td>Antall:<th id="antallTabell"><input type="number" id="antall"></th></td><td id = "feilmelding1"></td>
+    <td>Antall:<th><input type="number" id="antall"></th></td>
 
     <tr></tr>
 
-    <td>Fornavn:<th><input type="text" id="fornavn"></th><td id = "feilmelding2"></td></td>
+    <td>Fornavn:<th><input type="text" id="fornavn"></th></td>
 
     <tr></tr>
 
-    <td>Etternavn:<th><input type="text" id="etternavn"></th></td><td id = "feilmelding3"></td>
+    <td>Etternavn:<th><input type="text" id="etternavn"></th></td>
 
     <tr></tr>
 
-    <td>Telefonnr:<th><input type="number" id="telefonnr"></th></td><td id = "feilmelding4"></td>
+    <td>Telefonnr:<th><input type="number" id="telefonnr"></th></td>
 
     <tr></tr>
 
-    <td>Epost:<th><input type="email" id="epost"></th></td><td id = "feilmelding5"></td>
+    <td>Epost:<th><input type="email" id="epost"></th></td>
 
 </table>
 </form>
-
-
-<!--En knapp som registrerer input fra bruker inn i en dynamisk array.-->
-
 <button onclick="register();">Kjøp billett</button>
-
 <br>
+<table><tr><td>Film: </td>
+    <td>Antall : </td>
+    <td>Fornavn : </td>
+    <td>Etternavn : </td>
+    <td>Etternavn : </td>
+    <td>Telefonnr : </td>
+    <td>Epost : </td></tr></table>
+<table id="resultat"></table>
+<script type="application/javascript">
 
-<h2>Alle billetter:</h2>
+    //Lager tomt array
+    let filmarray = [];
 
-<!--Dynamisk table som viser innholdet i arrayet-->
-<table id="resultat">
-</table>
-<!--Sletter alt innhold i arrayet, reseter tell variablen til 0.-->
-<table>
-<td><button onclick=slettAlt(); id="slettknapp">Slett alle billettene</button></td><td id="feilmelding6"></td>
-</table>
+    // Register verdier inn i arrayet, sletter innhold fra form
+    function register(){
 
-<script type="application/javascript" src="index.js">
+        for (var i = 0; i<1; ++i){
+            filmarray.push(document.getElementById("film").value,
+                document.getElementById("antall").value,
+                document.getElementById("fornavn").value,
+                document.getElementById("etternavn").value,
+                document.getElementById("telefonnr").value,
+                document.getElementById("epost").value);
+            console.log("hei");
+        }
+        document.getElementById("innhold").reset();
+        console.log(filmarray);
+    }
+    function velg(){
+
+        let ut="<table><tr><td>Film: </td>";
+        ut +="<td>Antall : </td>"
+        ut +="<td>Fornavn : </td>"
+        ut +="<td>Etternavn : </td>"
+        ut +="<td>Telefonnr : </td>"
+        ut +="<td>Epost : </td></tr>"
+        ut +="<tr><td>"+document.getElementById("film").value;
+        ut +="</td><td>"+document.getElementById("antall").value;
+        ut +="</td><td>"+document.getElementById("fornavn").value;
+        ut +="</td><td>"+document.getElementById("etternavn").value;
+        ut +="</td><td>"+document.getElementById("telefonnr").value;
+        ut +="</td><td>"+document.getElementById("epost").value;
+        ut +="</td></tr>";
+
+/*        let ut="<table><tr/>Film : "+document.getElementById("film").value;
+
+        ut +="<tr/>Antall : "+document.getElementById("antall").value;
+
+        ut +="<tr/>Fornavn : "+document.getElementById("fornavn").value;
+
+        ut +="<tr/>Etternavn : "+document.getElementById("etternavn").value;
+
+        ut +="<tr/>Telefonnr : "+document.getElementById("telefonnr").value;
+
+        ut +="<tr/>Epost : </table>"+document.getElementById("epost").value; */
+
+        document.getElementById("resultat").innerHTML=ut;
+    }
 </script>
 </body>
 </html>
