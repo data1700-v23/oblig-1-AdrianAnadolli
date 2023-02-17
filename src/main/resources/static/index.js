@@ -1,13 +1,12 @@
 
     //Lager tomt array
 
-    let filmarray = [];
+    var filmarray = [];
 
 
     //lager en variabel som teller, blir brukt til å displaye arrayet i en dynamisk måte.
 
-    var tell = 0;
-
+    var i = 0;
 
     //Boolean som sikrer for at if setning kjøres kun en gang.
 
@@ -18,7 +17,7 @@
 
     function register(){
 
-    //Resetter alle feilmeldinger
+    //Resetter alle feilmeldinger hver gang funksjonen kjøres
 
     document.getElementById("feilmelding").innerText = "";
     document.getElementById("feilmelding1").innerText = "";
@@ -29,20 +28,23 @@
     document.getElementById("feilmelding6").innerText = "";
 
 
-    //Sjekker om alt input er fylt inn. Dersom alt er riktig blir informasjonen registert inn i arrayet.
+    //Sjekker om alt input er fylt inn. Dersom alt er riktig blir informasjonen registert inn i arrayet som et objekt.
 
     if (document.getElementById("film").value !== "Velg film her:" && document.getElementById("antall").value !== "" && document.getElementById("fornavn").value !== "" &&
         document.getElementById("etternavn").value !== "" && document.getElementById("telefonnr").value !== "" && document.getElementById("epost").value !== ""
         && document.getElementById("antall").value >= 0 && document.getElementById("telefonnr").value >= 0){
-        filmarray.push(document.getElementById("film").value,document.getElementById("antall").value,document.getElementById("fornavn").value,
-        document.getElementById("etternavn").value,document.getElementById("telefonnr").value,document.getElementById("epost").value);
+
+
+        filmarray[i] = [document.getElementById("film").value, document.getElementById("antall").value,document.getElementById("fornavn").value,
+        document.getElementById("etternavn").value,document.getElementById("telefonnr").value, document.getElementById("epost").value];
+
     }
 
 
     //Sjekker om hver inviduelt input er fylt inn, hvis ikke vil det blir sendt ut en feilmelding.
 
     if (document.getElementById("film").value === "Velg film her:"){
-        document.getElementById("feilmelding").innerText = "Må velge ett film"
+        document.getElementById("feilmelding").innerText = "Må velge en film"
     }
 
     if (document.getElementById("antall").value === "" || document.getElementById("antall").value <= 0){
@@ -71,7 +73,8 @@
 
     }
 
-    //If setning som kjører kunn en gang, fjernes med slett funksjonen og vil kunne brukes igjen hvis slett er kjørt.
+    //If setning som kjører kunn en gang når funksjonen kjøres, lager en ny table,
+        // fjernes med slett funksjonen og vil kunne brukes igjen hvis slett er kjørt.
     if(lagd === false && filmarray.length !== 0) {
         var table = document.getElementById("resultat");
         var row = table.insertRow(-1);
@@ -91,9 +94,10 @@
     }
 
 
-    //Fyller array med informasjon
+    //Fyller table med informasjon fra arrayet.
 
-    if(filmarray.length !== tell) {
+    if(filmarray.length !== i) {
+
         var table = document.getElementById("resultat");
         var row = table.insertRow(1);
         var cell1 = row.insertCell(0);
@@ -102,19 +106,18 @@
         var cell4 = row.insertCell(3);
         var cell5 = row.insertCell(4);
         var cell6 = row.insertCell(5);
-        cell1.innerHTML = filmarray[tell];
-        cell2.innerHTML = filmarray[tell + 1];
-        cell3.innerHTML = filmarray[tell + 2];
-        cell4.innerHTML = filmarray[tell + 3];
-        cell5.innerHTML = filmarray[tell + 4];
-        cell6.innerHTML = filmarray[tell + 5];
+
+        // Legger verdier fra array til table
+        cell1.innerHTML = filmarray[i][0];
+        cell2.innerHTML = filmarray[i][1];
+        cell3.innerHTML = filmarray[i][2];
+        cell4.innerHTML = filmarray[i][3];
+        cell5.innerHTML = filmarray[i][4];
+        cell6.innerHTML = filmarray[i][5];
+        i += 1;
     }
 
     document.getElementById("innhold").reset();
-
-     if (filmarray.length !== tell){
-        tell += 6;
-        }
     }
 
 
@@ -122,14 +125,13 @@
 
     function slettAlt(){
         if (filmarray.length === 0){
-            document.getElementById("feilmelding6").innerText = "Det finner ingen billetter som kan slettes"
+            document.getElementById("feilmelding6").innerText = "Det finnes ingen billetter som kan slettes"
         }
         if (filmarray.length !==0){
-        filmarray.splice(0);
+        filmarray = [];
         document.getElementById("resultat").innerHTML = '';
 
-        tell = 0;
-
+        i = 0;
         lagd = false;
 
         document.getElementById("resultat").style.cssText="";

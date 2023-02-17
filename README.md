@@ -5,14 +5,15 @@ GitHub brukernavn: AdrianAnadolli
 
 GitHub repo URL: https://github.com/DATA1700/oblig-1-AdrianAnadolli
 
-URL til Heroku app: https://oblig-1-javascript.herokuapp.com/
-
 Fullt navn: Arber Adrian Anadolli
 
 Kort beskrivelse av applikasjon (5–10 setninger): 
 
-I denne oppgaven så har jeg prøvd å få siden til å se ut som skjerbildene vist på oppgave vedlegg. Jeg har skrevet kommentarer underveis slik at koden blir lett å navigere gjennom. Til slutt så har jeg lagt til litt ekstra detaljer, feks feilmelding dersom slette knappen blir trykket mens arrayet er tomt, og litt css på for løkken.
-Hovedfilene index.html og index.js ligger under src>main>resources>static.
+Jeg begynte oppgaven med å få siden til å se ut som skjermbildene på oppgave vedlegg. Java-scriptet lager en ny array filmarray,
+legger inn "bestillinger" som en objekt i arrayet dersom alt input er fyllt inn av bruker.
+Etter registrering vil koden lage en ny table og legge inn verdiene fra arrayet. 
+Jeg har sørget for å kommentere underveis, og til slutt så har jeg lagt til litt ekstra detaljer, 
+Feks feilmelding dersom slette knappen blir trykket mens arrayet er tomt, og litt css på table.
 
 Her skal det legges inn en kort beskrivelse av innleveringen din.
 
