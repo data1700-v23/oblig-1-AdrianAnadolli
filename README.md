@@ -15,6 +15,8 @@ Etter registrering vil koden lage en ny table og legge inn verdiene fra arrayet.
 Jeg har sørget for å kommentere underveis, og til slutt så har jeg lagt til litt ekstra detaljer, 
 Feks feilmelding dersom slette knappen blir trykket mens arrayet er tomt, og litt css på table.
 
+data1700/v24 - Brukt regex til epost validering. Endringer i feilmeldingene.
+
 Her skal det legges inn en kort beskrivelse av innleveringen din.
 
 Inkluder også mangler du vet om, antagelser du har gjort og eventuelle kommentarer.
