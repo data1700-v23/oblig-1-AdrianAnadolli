@@ -1,21 +1,32 @@
+//Lager tomt array
 
-    //Lager tomt array
-
-    var filmarray = [];
-
-
-    //lager en variabel som teller, blir brukt til å displaye arrayet i en dynamisk måte.
-
-    var i = 0;
-
-    //Boolean som sikrer for at if setning kjøres kun en gang.
-
-    lagd = false;
+var filmarray = [];
 
 
-    // Hovedfunksjon som registrerer verdier inn i arrayet og sletter innhold fra form.
+//lager en variabel som teller, blir brukt til å displaye arrayet i en dynamisk måte.
 
-    function register(){
+var i = 0;
+
+//Boolean som sikrer for at if setning kjøres kun en gang.
+
+lagd = false;
+
+var userEmail;
+
+function validateEmail(email) {
+    // Regular expression for basic email validation
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+function validateAndLog() {
+    // Get the value from the input field with the ID "epost"
+    userEmail = document.getElementById("epost").value;
+}
+
+// Hovedfunksjon som registrerer verdier inn i arrayet og sletter innhold fra form.
+
+function register() {
 
     //Resetter alle feilmeldinger hver gang funksjonen kjøres
 
@@ -32,50 +43,61 @@
 
     if (document.getElementById("film").value !== "Velg film her:" && document.getElementById("antall").value !== "" && document.getElementById("fornavn").value !== "" &&
         document.getElementById("etternavn").value !== "" && document.getElementById("telefonnr").value !== "" && document.getElementById("epost").value !== ""
-        && document.getElementById("antall").value >= 0 && document.getElementById("telefonnr").value >= 0){
+        && document.getElementById("antall").value >= 0 && document.getElementById("telefonnr").value >= 0 && validateEmail(userEmail)) {
 
 
-        filmarray[i] = [document.getElementById("film").value, document.getElementById("antall").value,document.getElementById("fornavn").value,
-        document.getElementById("etternavn").value,document.getElementById("telefonnr").value, document.getElementById("epost").value];
+        filmarray[i] = [document.getElementById("film").value, document.getElementById("antall").value, document.getElementById("fornavn").value,
+            document.getElementById("etternavn").value, document.getElementById("telefonnr").value, document.getElementById("epost").value];
 
     }
 
 
     //Sjekker om hver inviduelt input er fylt inn, hvis ikke vil det blir sendt ut en feilmelding.
 
-    if (document.getElementById("film").value === "Velg film her:"){
+    if (document.getElementById("film").value === "Velg film her:") {
         document.getElementById("feilmelding").innerText = "Må velge en film"
     }
 
-    if (document.getElementById("antall").value === "" || document.getElementById("antall").value <= 0){
+    if (document.getElementById("antall").value <= 0) {
+        document.getElementById("feilmelding1").innerText = "Antall kan ikke være negativ"
+    }
+
+    if (document.getElementById("antall").value === "") {
         document.getElementById("feilmelding1").innerText = "Må skrive noe inn i antall"
     }
 
-    if (document.getElementById("fornavn").value === ""){
+    if (document.getElementById("fornavn").value === "") {
         document.getElementById("feilmelding2").innerText = "Må skrive noe inn i fornavnet"
     }
 
-    if (document.getElementById("etternavn").value === ""){
+    if (document.getElementById("etternavn").value === "") {
         document.getElementById("feilmelding3").innerText = "Må skrive noe inn i etternavnet"
     }
 
-    if (document.getElementById("telefonnr").value === "" || document.getElementById("telefonnr").value <= 0){
+    if (document.getElementById("telefonnr").value === "") {
         document.getElementById("feilmelding4").innerText = "Må skrive noe inn i telefonnr"
     }
 
-    if (document.getElementById("epost").value === ""){
+    if (document.getElementById("telefonnr").value < 0) {
+        document.getElementById("feilmelding4").innerText = "Telefonnummer kan ikke være negativ"
+    }
+
+    if (!validateEmail(userEmail)) {
+        document.getElementById("feilmelding5").innerText = "Ugyldig epost, sjekk at du har skrevet riktig"
+    }
+
+    if (document.getElementById("epost").value === "") {
         document.getElementById("feilmelding5").innerText = "Må skrive noe inn i epost"
     }
 
 
-    if (filmarray.length>0){
-    document.getElementById("resultat").style.cssText="border: 1px solid black; width:50%";
-
+    if (filmarray.length > 0) {
+        document.getElementById("resultat").style.cssText = "border: 1px solid black; width:50%";
     }
 
     //If setning som kjører kunn en gang når funksjonen kjøres, lager en ny table,
-        // fjernes med slett funksjonen og vil kunne brukes igjen hvis slett er kjørt.
-    if(lagd === false && filmarray.length !== 0) {
+    // fjernes med slett funksjonen og vil kunne brukes igjen hvis slett er kjørt.
+    if (lagd === false && filmarray.length !== 0) {
         var table = document.getElementById("resultat");
         var row = table.insertRow(-1);
         var cell1 = row.insertCell(0);
@@ -96,7 +118,7 @@
 
     //Fyller table med informasjon fra arrayet.
 
-    if(filmarray.length !== i) {
+    if (filmarray.length !== i) {
 
         var table = document.getElementById("resultat");
         var row = table.insertRow(1);
@@ -118,23 +140,30 @@
     }
 
     document.getElementById("innhold").reset();
+}
+
+
+//funksjon som sletter alt fra arrayet, setter tell til 0, resetter css.
+
+function slettAlt() {
+    document.getElementById("feilmelding").innerHTML = '';
+    document.getElementById("feilmelding1").innerHTML = '';
+    document.getElementById("feilmelding2").innerHTML = '';
+    document.getElementById("feilmelding3").innerHTML = '';
+    document.getElementById("feilmelding4").innerHTML = '';
+    document.getElementById("feilmelding5").innerHTML = '';
+
+    if (filmarray.length === 0) {
+        document.getElementById("feilmelding6").innerText = "Det finnes ingen billetter som kan slettes"
     }
-
-
-    //funksjon som sletter alt fra arrayet, setter tell til 0, resetter css.
-
-    function slettAlt(){
-        if (filmarray.length === 0){
-            document.getElementById("feilmelding6").innerText = "Det finnes ingen billetter som kan slettes"
-        }
-        if (filmarray.length !==0){
+    if (filmarray.length !== 0) {
         filmarray = [];
         document.getElementById("resultat").innerHTML = '';
 
         i = 0;
         lagd = false;
 
-        document.getElementById("resultat").style.cssText="";
+        document.getElementById("resultat").style.cssText = "";
 
-        }
     }
+}
