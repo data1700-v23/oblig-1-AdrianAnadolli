@@ -3,7 +3,7 @@
 OsloMet brukernavn: s364553
 GitHub brukernavn: AdrianAnadolli
 
-GitHub repo URL: https://github.com/DATA1700/oblig-1-AdrianAnadolli
+GitHub repo URL: https://github.com/data1700-v23/oblig-1-AdrianAnadolli
 
 Fullt navn: Arber Adrian Anadolli
 
